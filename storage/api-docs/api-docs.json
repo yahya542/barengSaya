@@ -12,13 +12,13 @@
         }
     ],
     "paths": {
-        "/api/login": {
+        "/login": {
             "post": {
                 "tags": [
                     "Auth"
                 ],
                 "summary": "Login",
-                "operationId": "222b2625838e3c57e017987f73598fda",
+                "operationId": "67d6d0fdd54fba132e1b6f55ca254183",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -49,13 +49,13 @@
                 }
             }
         },
-        "/api/register": {
+        "/register": {
             "post": {
                 "tags": [
                     "Auth"
                 ],
                 "summary": "Register",
-                "operationId": "8e4e3cb7b46126f4696379d3c7eeb4ad",
+                "operationId": "5d4fa5d5607ed675ba93907e1fc94534",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -64,7 +64,7 @@
                                 "properties": {
                                     "name": {
                                         "type": "string",
-                                        "example": "Yahya"
+                                        "example": "Muhammad Yahya"
                                     },
                                     "email": {
                                         "type": "string",
@@ -77,6 +77,14 @@
                                     "password_confirmation": {
                                         "type": "string",
                                         "example": "password123"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "example": "student",
+                                        "enum": [
+                                            "teacher",
+                                            "student"
+                                        ]
                                     }
                                 },
                                 "type": "object"
@@ -92,6 +100,47 @@
                         "description": "Unprocessable Content"
                     }
                 }
+            }
+        },
+        "/profile": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Profile",
+                "operationId": "2c21d15f399373a0c224a8064ee8ae40",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Logout",
+                "operationId": "28d48c13fca984400ac8de99f54ee13a",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         }
     },
